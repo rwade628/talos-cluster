@@ -21,8 +21,9 @@ cniConfig:
 nodes:
   - hostname: "ncase-m1"
     ipAddress: "192.168.2.89"
-    installDisk: "/dev/sda"
-    talosImageURL: factory.talos.dev/installer/376567988ad370138ad8b2698212367b8edcb69b5fd68c80be1f2ec7d603b4ba
+    installDiskSelector:
+      model: "Samsung SSD 850"
+    talosImageURL: factory.talos.dev/installer/0412a9a6369c0fb55e913cdfcbf4ad6ca3fab6e56ab71198ec4b58ad7e7a4ddd
     controlPlane: true
     networkInterfaces:
       - deviceSelector:
@@ -36,6 +37,8 @@ nodes:
             gateway: "192.168.2.1"
         vip:
           ip: "192.168.2.251"
+    patches:
+      - "@./patches/node_ncase-m1.yaml"
 
 patches:
   # Configure containerd
@@ -112,6 +115,8 @@ patches:
             options: ["bind", "rshared", "rw"]
 
 
+  # User specified global patches
+  - "@./patches/global.yaml"
 
 controlPlane:
   patches:
@@ -151,4 +156,6 @@ controlPlane:
             allowedRoles: ["os:admin"]
             allowedKubernetesNamespaces: ["system-upgrade"]
 
+    # User specified controlPlane patches
+    - "@./patches/controlPlane.yaml"
 

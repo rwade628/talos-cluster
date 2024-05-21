@@ -37,3 +37,5 @@ spec:
         type: hostPath
         hostPathType: Directory
         hostPath: /mnt/other/omada
+      work:
+        enabled: false

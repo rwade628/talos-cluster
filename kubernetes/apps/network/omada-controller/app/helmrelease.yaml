@@ -21,14 +21,14 @@ spec:
     remediation:
       retries: 3
   values:
-    ingress:
-      main:
-        enabled: true
-        hosts:
-          - host: omada.${SECRET_DOMAIN}
-            paths:
-              - path: /
-                pathType: Prefix
+    # ingress:
+    #   main:
+    #     enabled: true
+    #     hosts:
+    #       - host: omada.${SECRET_DOMAIN}
+    #         paths:
+    #           - path: /
+    #             pathType: Prefix
     persistence:
       data:
         type: hostPath

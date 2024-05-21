@@ -1,0 +1,36 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: registry
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: docker-registry
+      version: 4.0.1
+      sourceRef:
+        kind: HelmRepository
+        name: twuni
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    persistence:
+      enabled: true
+      storageClass: openebs-hostpath
+    ingress:
+      app:
+        className: internal
+        hosts:
+          - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
+            paths:
+              - path: /
+                service:
+                  identifier: registry
+                  port: 5000

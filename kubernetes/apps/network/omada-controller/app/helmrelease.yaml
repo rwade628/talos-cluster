@@ -22,9 +22,8 @@ spec:
       retries: 3
   values:
     ingress:
-      comm:
+      main:
         enabled: true
-        className: internal
         hosts:
           - host: omada.${SECRET_DOMAIN}
             paths:

@@ -1,0 +1,31 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: omada-controller-volume
+  namespace: network
+  labels:
+    omada: "true"
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/other/omada"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: omada-controller-claim
+  namespace: network
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  selector:
+    matchLabels:
+      omada: "true"

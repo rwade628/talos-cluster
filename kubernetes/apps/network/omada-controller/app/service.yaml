@@ -8,7 +8,6 @@ metadata:
   namespace: network
 spec:
   type: ClusterIP
-  externalTrafficPolicy: Local
   selector:
     app: omada-controller
   ports:

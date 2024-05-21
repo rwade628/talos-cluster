@@ -28,9 +28,4 @@ spec:
       enabled: true
       className: internal
       hosts:
-        - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
-          paths:
-            - path: /
-              service:
-                identifier: registry
-                port: 5000
+        - registry.casadewade.com

@@ -16,6 +16,7 @@ spec:
       labels:
         app: omada-controller
     spec:
+      hostNetwork: true
       containers:
         - name: omada-controller
           image: mbentley/omada-controller:5.13

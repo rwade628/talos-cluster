@@ -22,10 +22,10 @@ spec:
       retries: 3
   values:
     ingress:
-      integrations:
-        traefik:
-          enabled: false
       main:
+        integrations:
+          traefik:
+            enabled: false
         enabled: true
         hosts:
           - host: omada.${SECRET_DOMAIN}

@@ -28,4 +28,9 @@ spec:
       enabled: true
       className: internal
       hosts:
-        - "{{ .Release.Name }}.${SECRET_DOMAIN}"
+        - host: "{{ .Release.Name }}.${SECRET_DOMAIN}"
+          paths:
+            - path: /
+              service:
+                identifier: registry
+                port: 5000

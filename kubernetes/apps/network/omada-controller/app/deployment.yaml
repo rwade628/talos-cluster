@@ -19,7 +19,7 @@ spec:
       containers:
         - name: omada-controller
           image: mbentley/omada-controller:5.13
-          imagePullPolicy: Always
+          imagePullPolicy: IfNotPresent
           env:
             - name: "TZ"
               value: "America/New_York"

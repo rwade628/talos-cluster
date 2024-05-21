@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: omada-controller
   namespace: network
+  annotations:
+    nginx.ingress.kubernetes.io/backend-protocol: HTTPS
 spec:
   ingressClassName: internal
   rules:
@@ -16,4 +18,4 @@ spec:
               service:
                 name: omada-controller
                 port:
-                  number: 8088
+                  number: 8043

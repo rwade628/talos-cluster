@@ -41,7 +41,7 @@ apiVersion: stunner.l7mp.io/v1
 kind: UDPRoute
 metadata:
   name: selkies-plane
-  namespace: stunner
+  namespace: desktop
 spec:
   parentRefs:
     - name: udp-gateway

@@ -9,3 +9,9 @@ creation_rules:
     key_groups:
       - age:
           - "age1k92xt0gaglarme3xrmykcelx935l60epmrppzq6kmr4kht59tg0srux40y"
+  - path_regex: kubernetes/.+\.secret(\.sops)?\.ya?ml
+    input_type: yaml
+    encrypted_regex: ^(data|stringData)$
+    key_groups:
+      - age:
+          - "age1k92xt0gaglarme3xrmykcelx935l60epmrppzq6kmr4kht59tg0srux40y"

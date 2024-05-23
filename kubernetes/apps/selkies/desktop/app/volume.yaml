@@ -1,0 +1,31 @@
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: selkies-volume
+  namespace: selkies
+  labels:
+    desktop: "true"
+spec:
+  storageClassName: manual
+  capacity:
+    storage: 5Gi
+  accessModes:
+    - ReadWriteOnce
+  hostPath:
+    path: "/mnt/other/desktop"
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: selkies-claim
+  namespace: selkies
+spec:
+  storageClassName: manual
+  accessModes:
+    - ReadWriteOnce
+  resources:
+    requests:
+      storage: 5Gi
+  selector:
+    matchLabels:
+      desktop: "true"

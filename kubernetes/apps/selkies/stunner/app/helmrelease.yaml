@@ -3,6 +3,7 @@ apiVersion: helm.toolkit.fluxcd.io/v2beta2
 kind: HelmRelease
 metadata:
   name: stunner-gateway-operator
+  namespace: desktop
 spec:
   interval: 30m
   chart:
@@ -20,5 +21,3 @@ spec:
     cleanupOnFail: true
     remediation:
       retries: 3
-  values:
-    namespace: desktop

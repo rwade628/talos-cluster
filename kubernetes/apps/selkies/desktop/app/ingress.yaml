@@ -4,6 +4,8 @@ kind: Ingress
 metadata:
   name: desktop
   namespace: desktop
+  annotations:
+    ingress.kubernetes.io/ssl-redirect: "false"
 spec:
   ingressClassName: internal
   rules:

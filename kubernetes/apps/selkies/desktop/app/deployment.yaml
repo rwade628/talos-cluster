@@ -58,23 +58,23 @@ spec:
           ###
           # Uncomment below to use a TURN server for improved network compatibility
           ###
-            - name: TURN_HOST
-              value: "192.168.2.253"
-            - name: TURN_PORT
-              value: "3478"
-            - name: TURN_USERNAME
-              valueFrom:
-               secretKeyRef:
-                 name: stunner-auth-secret
-                 key: username
-            - name: TURN_PASSWORD
-              valueFrom:
-               secretKeyRef:
-                 name: stunner-auth-secret
-                 key: password
-          # Change to `tcp` if the UDP protocol is throttled or blocked in your client network, or when the TURN server does not support UDP
-            - name: TURN_PROTOCOL
-              value: "udp"
+          #   - name: TURN_HOST
+          #     value: "stunner.casadewade.com"
+          #   - name: TURN_PORT
+          #     value: "3478"
+          #   - name: TURN_USERNAME
+          #     valueFrom:
+          #      secretKeyRef:
+          #        name: stunner-auth-secret
+          #        key: username
+          #   - name: TURN_PASSWORD
+          #     valueFrom:
+          #      secretKeyRef:
+          #        name: stunner-auth-secret
+          #        key: password
+          # # Change to `tcp` if the UDP protocol is throttled or blocked in your client network, or when the TURN server does not support UDP
+          #   - name: TURN_PROTOCOL
+          #     value: "udp"
           # You need a valid hostname and a certificate from authorities such as ZeroSSL (Let's Encrypt may have issues) to enable this
           #        - name: TURN_TLS
           #          value: "false"

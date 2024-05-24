@@ -2,7 +2,7 @@ kind: PersistentVolume
 apiVersion: v1
 metadata:
   name: selkies-volume
-  namespace: selkies
+  namespace: desktop
   labels:
     desktop: "true"
 spec:
@@ -18,7 +18,7 @@ kind: PersistentVolumeClaim
 apiVersion: v1
 metadata:
   name: selkies-claim
-  namespace: selkies
+  namespace: desktop
 spec:
   storageClassName: manual
   accessModes:

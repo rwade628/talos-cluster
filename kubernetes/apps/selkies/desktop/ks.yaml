@@ -5,7 +5,7 @@ metadata:
   name: &app desktop
   namespace: flux-system
 spec:
-  targetNamespace: nvidia
+  targetNamespace: desktop
   dependsOn:
     - name: gateway
   commonMetadata:

@@ -100,12 +100,9 @@ spec:
             - mountPath: /cache
               name: selkies-volume
               subPath: cache
-            - mountPath: /home/user
+            - mountPath: /home/ubuntu
               name: selkies-volume
               subPath: home
-            - mountPath: /data
-              name: selkies-volume
-              subPath: static-server
       volumes:
         - name: dshm
           emptyDir:

@@ -42,10 +42,10 @@ spec:
         node-stage-secret:
         node-publish-secret:
         controller-expand-secret:
-    volumeSnapshotClasses:
-    - name: nfs
-      parameters:
-        detachedSnapshots: "true"
+    # volumeSnapshotClasses:
+    # - name: nfs
+    #   parameters:
+    #     detachedSnapshots: "true"
     driver:
       existingConfigSecret: driver-config-secret
       config:

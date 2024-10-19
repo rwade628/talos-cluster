@@ -1,0 +1,75 @@
+---
+apiVersion: helm.toolkit.fluxcd.io/v2beta2
+kind: HelmRelease
+metadata:
+  name: democratic-csi
+spec:
+  interval: 30m
+  chart:
+    spec:
+      chart: democratic-csi
+      version: 0.14.6
+      sourceRef:
+        kind: HelmRepository
+        name: democratic-csi
+        namespace: flux-system
+  install:
+    remediation:
+      retries: 3
+  upgrade:
+    cleanupOnFail: true
+    remediation:
+      retries: 3
+  values:
+    csiDriver:
+      name: "nfs"
+    storageClasses:
+    - name: nfs
+      defaultClass: false
+      reclaimPolicy: Delete
+      volumeBindingMode: Immediate
+      allowVolumeExpansion: true
+      parameters:
+        fsType: nfs
+        detachedVolumesFromSnapshots: "false"
+      mountOptions:
+      - noatime
+      - nfsvers=4
+      secrets:
+        provisioner-secret:
+        controller-publish-secret:
+        node-stage-secret:
+        node-publish-secret:
+        controller-expand-secret:
+    volumeSnapshotClasses:
+    - name: nfs
+      parameters:
+        detachedSnapshots: "true"
+    driver:
+      existingConfigSecret: driver-config-secret
+      config:
+        driver: freenas-api-nfs
+        instance_id:
+        httpConnection:
+          protocol: http
+          host: 192.168.2.71
+          port: 80
+          allowInsecure: true
+        zfs:
+          datasetParentName: mnt/NVME/k8s/nfs/vols
+          detachedSnapshotsDatasetParentName: mnt/NVME/k8s/nfs/snaps
+          datasetEnableQuotas: true
+          datasetEnableReservation: false
+          datasetPermissionsMode: "0777"
+          datasetPermissionsUser: 0
+          datasetPermissionsGroup: 0
+        nfs:
+          shareHost: 192.168.2.71
+          shareAlldirs: false
+          shareAllowedHosts: []
+          shareAllowedNetworks: []
+          shareMaprootUser: root
+          shareMaprootGroup: root
+          shareMapallUser: ""
+          shareMapallGroup: ""
+

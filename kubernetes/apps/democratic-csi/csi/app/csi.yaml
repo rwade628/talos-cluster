@@ -23,16 +23,17 @@ spec:
       retries: 3
   values:
     csiDriver:
-      name: "nfs"
+      name: "org.democratic-csi.nfs"
+      fsGroupPolicy: File
     storageClasses:
-    - name: nfs
+    - name: freenas-nfs-csi
       defaultClass: false
       reclaimPolicy: Delete
       volumeBindingMode: Immediate
       allowVolumeExpansion: true
       parameters:
         fsType: nfs
-        detachedVolumesFromSnapshots: "false"
+        # detachedVolumesFromSnapshots: "false"
       mountOptions:
       - noatime
       - nfsvers=4

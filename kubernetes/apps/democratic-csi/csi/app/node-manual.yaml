@@ -23,9 +23,8 @@ spec:
       retries: 3
   values:
     csiDriver:
-    # should be globally unique for a given cluster
-    name: "org.democratic-csi.node-manual"
-    attachRequired: true
+      name: "org.democratic-csi.node-manual"
+      attachRequired: true
     controller:
       externalAttacher:
         enabled: true

@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: internal
   rules:
-    - host: desktop.casadewade.com
+    - host: desktop.home.arpa
       http:
         paths:
           - path: /

@@ -1,0 +1,59 @@
+---
+apiVersion: v1
+kind: PersistentVolume
+metadata:
+  name: media-mount
+spec:
+  capacity:
+    storage: 1Gi
+  accessModes:
+    - ReadWriteMany
+  persistentVolumeReclaimPolicy: Retain
+  mountOptions:
+    - nfsvers=4
+    - nolock
+    - noatime
+  csi:
+    driver: org.democratic-csi.node-manual
+    readOnly: false
+    fsType: nfs
+    volumeHandle: unique-volumeid  # make sure it's a unique id in the cluster
+    volumeAttributes:
+      server: 192.168.2.71
+      share: /mnt/storage/k8s/media
+      node_attach_driver: nfs
+      provisioner_driver: node-manual
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: test-vol-nfs
+  namespace: democratic-csi
+spec:
+  volumeName: media-mount
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 1Gi
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  name: task-pv-pod
+  namespace: democratic-csi
+spec:
+  volumes:
+    - name: test-vol-nfs
+      persistentVolumeClaim:
+        claimName: test-vol-nfs
+  containers:
+    - name: task-pv-container
+      image: nginx
+      ports:
+        - containerPort: 80
+          name: "http-server"
+      volumeMounts:
+        - mountPath: "/usr/share/nginx/html"
+          name: test-vol-nfs
+

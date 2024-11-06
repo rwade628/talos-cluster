@@ -29,3 +29,35 @@ spec:
   selector:
     matchLabels:
       desktop: "true"
+---
+kind: PersistentVolume
+apiVersion: v1
+metadata:
+  name: desktop-nfs-volume
+  namespace: desktop
+spec:
+  storageClassName: ""
+  capacity:
+    storage: 500Gi
+  accessModes:
+    - ReadWriteMany
+  nfs:
+    server: 192.168.2.71
+    path: "/mnt/storage/k8s/media"
+  mountOptions:
+    - nfsvers=4.2
+---
+kind: PersistentVolumeClaim
+apiVersion: v1
+metadata:
+  name: nfs-claim
+  namespace: desktop
+spec:
+  storageClassName: ""
+  accessModes:
+    - ReadWriteMany
+  resources:
+    requests:
+      storage: 500Gi
+  volumeName: desktop-nfs-volume
+

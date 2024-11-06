@@ -103,6 +103,8 @@ spec:
             - mountPath: /home/ubuntu
               name: selkies-volume
               subPath: home
+            - mountPath: /mnt/media
+              name: media-volume
       volumes:
         - name: dshm
           emptyDir:
@@ -110,3 +112,6 @@ spec:
         - name: selkies-volume
           persistentVolumeClaim:
             claimName: selkies-claim
+        - name: media-volume
+          persistentVolumeClaim:
+            claimName: nfs-claim

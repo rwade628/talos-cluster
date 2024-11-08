@@ -9,7 +9,7 @@ metadata:
 spec:
   ingressClassName: internal
   rules:
-    - host: omada.home.arpt
+    - host: omada.home.arpa
       http:
         paths:
           - path: /
